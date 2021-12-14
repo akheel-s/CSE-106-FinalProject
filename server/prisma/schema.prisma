@@ -1,0 +1,69 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model Accuracy {
+  accuracy_id Int       @id @default(autoincrement())
+  userdeck_id Int
+  accuracy    Decimal
+  timestamp   DateTime  @default(now())
+  User_Deck   User_Deck @relation(fields: [userdeck_id], references: [userdeck_id])
+}
+
+model Confidence {
+  confidence_id    Int            @id @default(autoincrement())
+  userflashcard_id Int
+  confidence       Decimal
+  timestamp        DateTime       @default(now())
+  User_Flashcard   User_Flashcard @relation(fields: [userflashcard_id], references: [userflashcard_id])
+}
+
+model Deck {
+  deck_id   Int         @id @default(autoincrement())
+  deck_name String
+  author_id Int
+  User      User        @relation(fields: [author_id], references: [user_id])
+  Flashcard Flashcard[]
+  User_Deck User_Deck[]
+}
+
+model Flashcard {
+  flashcard_id   Int              @id @default(autoincrement())
+  front          String
+  back           String
+  deck_id        Int
+  Deck           Deck             @relation(fields: [deck_id], references: [deck_id])
+  User_Flashcard User_Flashcard[]
+}
+
+model User {
+  user_id        Int              @id @default(autoincrement())
+  email          String           @unique
+  password       String
+  Deck           Deck[]
+  User_Deck      User_Deck[]
+  User_Flashcard User_Flashcard[]
+}
+
+model User_Deck {
+  userdeck_id Int        @id @default(autoincrement())
+  user_id     Int
+  deck_id     Int
+  Deck        Deck       @relation(fields: [deck_id], references: [deck_id])
+  User        User       @relation(fields: [user_id], references: [user_id])
+  Accuracy    Accuracy[]
+}
+
+model User_Flashcard {
+  userflashcard_id Int          @id @default(autoincrement())
+  user_id          Int
+  flashcard_id     Int
+  Flashcard        Flashcard    @relation(fields: [flashcard_id], references: [flashcard_id])
+  User             User         @relation(fields: [user_id], references: [user_id])
+  Confidence       Confidence[]
+}
