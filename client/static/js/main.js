@@ -41,36 +41,6 @@
 }*/
 
 //FUNCTION FOR LOGIN//
-function login () {
-    let email = document.getElementById('email');
-    let password = document.getElementById('password');
-
-    var xhttp = new XMLHttpRequest();
-    xhttp.open("POST", "http://localhost:4000/api/auth/login");
-    xhttp.setRequestHeader("Content-Type", "application/json");
-    xhttp.send(JSON.stringify({
-        "email": email,
-        "password": password
-    }));
-
-    xhttp.onreadystatechange = function () {
-        if (this.readyState == 4) {
-            const objects = JSON.parse(this.responseText);
-            if (object['status'] == 'ok') {
-                localStorage.setItem("jwt", object['acessToken']);
-                console.log("Good");
-            }).then((result) => {
-                if (result.isConfirmed) {
-                    window.location.href = './index.html';
-                }
-            });
-            } else {
-
-            }
-        }
-    }
-
-}
 
 //FUNCTION FOR QUIZ//
 function nextCard(card_ID) {
@@ -136,9 +106,9 @@ function delRow(tableID) {
   count--;
 }
 
-function showAllCards() {
-    let request = new XMLHttpRequest();
-    let display = document.getElementById("please-work");
+function showAll() {
+  let request = new XMLHttpRequest();
+  let display = document.getElementById("please-work");
 
   request.open("GET", "http://localhost:4000/api/flashcards/");
   request.setRequestHeader("Accept", "application/json");
@@ -146,18 +116,6 @@ function showAllCards() {
   request.send();
 
   request.onload = () => (display.value += request.responseText);
-}
-
-function showAllDecks(deck_id) {
-    let request = new XMLHttpRequest();
-    let display = document.getElementsByClassName("box");
-
-    request.open('GET', "http://localhost:4000/api/decks/");
-    request.setRequestHeader("Accept", "application/json");
-    
-    request.send();
-
-    request.onload = () => display.value += request.responseText;
 }
 
 function newDeck() {
