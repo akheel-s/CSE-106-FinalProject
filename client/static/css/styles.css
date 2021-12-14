@@ -16,6 +16,22 @@ body {
     align-items: center;
 }
 
+.storage {
+    display: flex;
+    justify-content: space-evenly;
+    padding: 2%;
+}
+
+a.box {
+    padding: 40px;
+    border-style: solid;
+}
+
+.under-storage {
+    display: flex;
+    justify-content: space-evenly;
+}
+
 /*-----------------------WORKSPACE----------------------------*/
 div#topbar.center {
     display: flex;
@@ -30,6 +46,7 @@ div#topbar.center {
     border: black;
     display: flex;
     justify-content: space-evenly;
+    padding: 10px;
 }
 
 .tab button {
