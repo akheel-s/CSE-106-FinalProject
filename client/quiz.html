@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Studi</title>
+            
+        <link rel="stylesheet" href="static/css/styles.css?v=1.0">
+        <script src="static/js/main.js"></script>
+    </head>
+
+    <body>
+        <div class="container-fluid">
+            <h1>Quiz</h1>
+            <a id="return-btn" href="./dashboard.html">Return to Home</a>
+        </div>
+
+        <div class="main-part">
+            <form action="/deck" method="get">
+                <textarea id="display-area"></textarea>
+            </form>
+
+            <button onclick="nextCard()">Answer</button>
+            <button onclick="nextCard()">Next</button>
+        </div>
+
+        <div class="rate-layout">
+            <h4>Rate the difficulty</h4>
+            <form action="/difficult" method="post">
+                <button type="submit" id="easy" value="1">Easy</button>
+                <button type="submit" id="medium" value="2">Medium</button>
+                <button type="submit" id="hard" value="3">Hard</button>
+            </form>
+        </div>
+
+
+
+
+    </body>
+</html>

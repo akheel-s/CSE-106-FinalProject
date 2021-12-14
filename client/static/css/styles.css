@@ -1,0 +1,117 @@
+*{
+    margin: 10;
+    padding: 10;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Courier New', Courier, monospace;
+    background-color: whitesmoke;
+}
+
+.container-fluid {
+    display: flex;
+    justify-content: space-between;
+    align-content: center;
+    align-items: center;
+}
+
+/*-----------------------WORKSPACE----------------------------*/
+div#topbar.center {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 5px;
+}
+
+.tab {
+    overflow: hidden;
+    border: black;
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.tab button {
+    background-color: whitesmoke;
+    float: left;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    padding: 14px 15%;
+    transition: 0.5s;
+}
+
+.tab button:hover {
+    background-color: white;
+}
+
+.tab button.active {
+    background-color: cornflowerblue;
+}
+
+.tabcontent {
+    display: none;
+    padding: 6px 12px;
+    border-top: none;
+}
+
+#addCourse.tabcontent {
+    padding: 1%;
+}
+
+table.full {
+    display: flex;
+    justify-content: space-evenly;
+}
+
+th {
+    padding: 10px;
+}
+
+td {
+    padding: 10px;
+    text-align: center;
+}
+
+button.plus {
+    border-style: hidden;
+    background-color: white;
+    font-size: xx-large;
+}
+
+button#status {
+    border-style: hidden;
+    background-color: white;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+.edit-tab {
+    padding: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.save-form {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+/*---------------------------QUIZ-----------------------------*/
+.main-part {
+    text-align: center;
+}
+
+textarea#display-area {
+    font-size: xx-large;
+    text-align: center;
+    outline-style: solid;
+    width: 300px;
+    height: 200px;
+}
+
+.rate-layout {
+    text-align: center;
+}

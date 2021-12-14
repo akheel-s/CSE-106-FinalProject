@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="static/css/styles.css">
+        <script src="static/js/main.js"></script>
+        <title>Workspace</title>
+    </head>
+
+    <body>
+        <div class="center" id="topbar">
+            <h4>Welcome!</h4>
+            <h1>Workspace</h1>
+            <!--Add link to login page-->
+            <a href="./dashboard.html">Return to Home</a>
+        </div>
+
+        <div class="tab">
+            <button class="tablinks" onclick="loadTable(event, 'addCourse')">Create Deck</button>
+        </div>
+
+        <div class="edit-tab">
+
+            <form class="edit-form">
+                <textarea id="key" placeholder="Keyword"></textarea>
+                <textarea id="def" placeholder="Definition"></textarea>
+            </form>
+            
+            <button class="plus" onclick="addRow('NewCard')">+</button>
+            <button class="plus" onclick="delRow('NewCard')">-</button>
+
+        </div>
+
+        <div class="save-form">
+            <textarea id="deck_name" placeholder="Name"></textarea>
+            <button class="tablinks" onclick="newDeck()">Save</button>    
+        </div>
+
+        <div id="addCourse" class="tabcontent">
+            <table id="NewCard" class="full">
+
+                <tr>
+                    <th>Card Number</th>
+                    <th>Keyword</th>
+                    <th>Definition</th>
+                </tr>
+
+                <tr>
+                    <td>0</td>
+                    <td>First Card</td>
+                    <td>This is a testing card</td>
+                    <td></td>
+                </tr>
+
+            </table>
+
+        </div>
+
+    </body>
+</html>
