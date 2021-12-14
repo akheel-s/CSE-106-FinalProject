@@ -188,6 +188,7 @@ function pullDecks() {
   let xhr = new XMLHttpRequest();
   xhr.open("GET", "http://localhost:4000/decks");
   xhr.setRequestHeader("Accept", "application/json");
+  xhr.send();
   xhr.onreadystatechange = function () {
     console.log(xhr.responseText);
     var deckDatas = JSON.parse(xhr.responseText);
@@ -195,5 +196,19 @@ function pullDecks() {
     console.log(string);
     document.getElementById("deckData").innerHTML = string;
   };
+  
+}
+
+function trace(value) {
+  let xhr = new XMLHttpRequest();
+
+  xhr.open("POST", "http://localhost:4000/api/accuracies/" + value);
+  xhr.setRequestHeader("Accept", "application/json");
+
   xhr.send();
+  xhr.onreadystatechange = function () {
+    console.log(xhr.responseText);
+    console.log(string);
+    document.getElementById("average").innerHTML = string;
+  };
 }
