@@ -136,15 +136,9 @@ function delRow(tableID) {
   count--;
 }
 
-<<<<<<< HEAD
-function showAll() {
-  let request = new XMLHttpRequest();
-  let display = document.getElementById("please-work");
-=======
 function showAllCards() {
     let request = new XMLHttpRequest();
     let display = document.getElementById("please-work");
->>>>>>> 1fda695b47808edb51319168b1ab18d9ee30d9bf
 
   request.open("GET", "http://localhost:4000/api/flashcards/");
   request.setRequestHeader("Accept", "application/json");
