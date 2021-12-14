@@ -20,25 +20,25 @@ export class UserflashcardsController {
   constructor(private readonly userflashcardsService: UserflashcardsService) {}
 
   @Post()
-  @UseGuards(JwtAuthGuard)
+  // @UseGuards(JwtAuthGuard)
   create(@Body() createUserflashcardDto: CreateUserflashcardDto) {
     return this.userflashcardsService.create(createUserflashcardDto);
   }
 
   @Get()
-  @UseGuards(JwtAuthGuard)
+  // @UseGuards(JwtAuthGuard)
   findAll() {
     return this.userflashcardsService.findAll();
   }
 
   @Get(':id')
-  @UseGuards(JwtAuthGuard)
+  // @UseGuards(JwtAuthGuard)
   findOne(@Param('id') id: string) {
     return this.userflashcardsService.findOne(+id);
   }
 
   @Patch(':id')
-  @UseGuards(JwtAuthGuard)
+  // @UseGuards(JwtAuthGuard)
   update(
     @Param('id') id: string,
     @Body() updateUserflashcardDto: UpdateUserflashcardDto,
@@ -47,7 +47,7 @@ export class UserflashcardsController {
   }
 
   @Delete(':id')
-  @UseGuards(JwtAuthGuard)
+  // @UseGuards(JwtAuthGuard)
   remove(@Param('id') id: string) {
     return this.userflashcardsService.remove(+id);
   }

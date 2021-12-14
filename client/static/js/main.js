@@ -42,142 +42,158 @@
 
 //FUNCTION FOR LOGIN//
 
-
 //FUNCTION FOR QUIZ//
 function nextCard(card_ID) {
-    let request = new XMLHttpRequest();
-    let display = document.getElementById("display-area");
+  let request = new XMLHttpRequest();
+  let display = document.getElementById("display-area");
 
-    request.open('GET', "localhost:4000/api/flashcards/" + card_ID);
-    request.send();
+  request.open("GET", "http://localhost:4000/api/flashcards/" + card_ID);
+  request.send();
 
-    request.onload = () => display.value += request.responseText;
+  request.onload = () => (display.value += request.responseText);
 }
 
 //FUNCTION FOR WORKSPACE//
-function loadTable(event, showTab){
-    var i, tabcontent, tablinks;
+function loadTable(event, showTab) {
+  var i, tabcontent, tablinks;
 
-    tabcontent = document.getElementsByClassName("tabcontent");
-    for (i = 0; i < tabcontent.length; i++) {
-        tabcontent[i].style.display = "none";
-    }
+  tabcontent = document.getElementsByClassName("tabcontent");
+  for (i = 0; i < tabcontent.length; i++) {
+    tabcontent[i].style.display = "none";
+  }
 
-    tablinks = document.getElementsByClassName("tablinks");
-    for (i = 0; i < tablinks.length; i++) {
-        tablinks[i].className = tablinks[i].className.replace("active", "");        
-    }
+  tablinks = document.getElementsByClassName("tablinks");
+  for (i = 0; i < tablinks.length; i++) {
+    tablinks[i].className = tablinks[i].className.replace("active", "");
+  }
 
-    document.getElementById(showTab).style.display = "block";
-    event.currentTarget.className += " active";
+  document.getElementById(showTab).style.display = "block";
+  event.currentTarget.className += " active";
 }
 
 count = 1;
 
 function addRow(tableID) {
-    let table = document.getElementById(tableID);
-    let newRow = table.insertRow(-1);
-    
-    let CardNum = newRow.insertCell(0);
-    let Keyword = newRow.insertCell(1);
-    let Definition = newRow.insertCell(2);
+  let table = document.getElementById(tableID);
+  let newRow = table.insertRow(-1);
 
-    // INCLUDE INFORMATION FROM DATABASE
+  let CardNum = newRow.insertCell(0);
+  let Keyword = newRow.insertCell(1);
+  let Definition = newRow.insertCell(2);
 
-    //JSON.parse() incoming string
+  // INCLUDE INFORMATION FROM DATABASE
 
-    let key = document.getElementById('key');
-    let def = document.getElementById('def')
+  //JSON.parse() incoming string
 
-    var fillNum = document.createTextNode(count++);
-    var fillKey = document.createTextNode(key.value);
-    var fillDef = document.createTextNode(def.value);
-    
-    CardNum.appendChild(fillNum);
-    Keyword.appendChild(fillKey);
-    Definition.appendChild(fillDef);
+  let key = document.getElementById("key");
+  let def = document.getElementById("def");
+
+  var fillNum = document.createTextNode(count++);
+  var fillKey = document.createTextNode(key.value);
+  var fillDef = document.createTextNode(def.value);
+
+  CardNum.appendChild(fillNum);
+  Keyword.appendChild(fillKey);
+  Definition.appendChild(fillDef);
 }
 
 function delRow(tableID) {
-    let table = document.getElementById(tableID);
-    
-    //DELETE FROM DATABASE AS WELL
+  let table = document.getElementById(tableID);
 
-    table.deleteRow(-1);
-    count--;
+  //DELETE FROM DATABASE AS WELL
+
+  table.deleteRow(-1);
+  count--;
 }
 
 function showAll() {
-    let request = new XMLHttpRequest();
-    let display = document.getElementById("please-work");
+  let request = new XMLHttpRequest();
+  let display = document.getElementById("please-work");
 
-    request.open('GET', "http://localhost:4000/api/flashcards/");
-    request.setRequestHeader("Accept", "application/json");
-    
-    request.send();
+  request.open("GET", "http://localhost:4000/api/flashcards/");
+  request.setRequestHeader("Accept", "application/json");
 
-    request.onload = () => display.value += request.responseText;
+  request.send();
+
+  request.onload = () => (display.value += request.responseText);
 }
 
 function newDeck() {
-    var xhttp = new XMLHttpRequest();
-    
-    xhttp.open('POST', "localhost:4000/api/decks");
-    //xhttp.setRequestHeader('Content-Type', 'application/json');
-    xhttp.setRequestHeader("Accept", "application/json");
+  var xhttp = new XMLHttpRequest();
 
-    let deck_name = document.getElementById("deck_name");
-    let msg = "Success";
+  xhttp.open("POST", "http://localhost:4000/api/decks");
+  //xhttp.setRequestHeader('Content-Type', 'application/json');
+  xhttp.setRequestHeader("Accept", "application/json");
 
-    xhttp.onload = function() {
-        msg += this.responseText;
-    };
+  let deck_name = document.getElementById("deck_name");
+  let msg = "Success";
 
-    const body = {"deck_id":1,"deck_name": deck_name.value};
-    
-    xhttp.send(JSON.stringify(body));
+  xhttp.onload = function () {
+    msg += this.responseText;
+  };
+
+  const body = { deck_id: 1, deck_name: deck_name.value };
+
+  xhttp.send(JSON.stringify(body));
 }
 
 //should delete from database and then remove row automatically
 function deleteCard() {
-    var deck_id = document.getElementById('key');
+  var deck_id = document.getElementById("key");
 
-    request.open('DELETE', 'localhost:4000/api/flashcards/' + deck_id.value);
-    request.setRequestHeader('Content-Type', 'application/json');
+  request.open(
+    "DELETE",
+    "http://localhost:4000/api/flashcards/" + deck_id.value
+  );
+  request.setRequestHeader("Content-Type", "application/json");
 
-    request.onload = function() {
-        delRow(deck_id);
-    }
+  request.onload = function () {
+    delRow(deck_id);
+  };
 
-    request.send()
+  request.send();
 }
 
 //FUNCTION FOR VIEW//
 function generate_deck() {
-    var ref = document.getElementById("genTable")[0];
+  var ref = document.getElementById("genTable")[0];
 
-    var table = document.createElement("table");
-    var tableRef = document.createElement("tref");
+  var table = document.createElement("table");
+  var tableRef = document.createElement("tref");
 
-    for (var i = 0; i < 2; i++) {
-        var row = document.createElement("tr");
+  for (var i = 0; i < 2; i++) {
+    var row = document.createElement("tr");
 
-        for (var j = 0; j < 2; i++) {
-            var row = document.createElement("tr");
+    for (var j = 0; j < 2; i++) {
+      var row = document.createElement("tr");
 
-            for (var j = 0; j < 2; j++) {
-                var cell = document.createElement("td");
-                var text = document.createTextNode(i + "Card Name")
+      for (var j = 0; j < 2; j++) {
+        var cell = document.createElement("td");
+        var text = document.createTextNode(i + "Card Name");
 
-                cell.appendChild(text);
-                row.appendChild(cell);
-            }
+        cell.appendChild(text);
+        row.appendChild(cell);
+      }
 
-            tableRef.appendChild(row);
-        }
-
-        table.appendChild(tableRef);
-        //ref.appendChild(table);
-        table.setAttribute("border", 2);
+      tableRef.appendChild(row);
     }
+
+    table.appendChild(tableRef);
+    //ref.appendChild(table);
+    table.setAttribute("border", 2);
+  }
+}
+
+function pullDecks() {
+  let xhr = new XMLHttpRequest();
+  xhr.open("GET", "http://localhost:4000/decks");
+  xhr.setRequestHeader("Accept", "application/json");
+  xhr.onreadystatechange = function () {
+    console.log(xhr.responseText);
+    var deckDatas = JSON.parse(xhr.responseText);
+    var string = JSON.stringify(deckDatas);
+    console.log(string);
+    document.getElementById("deckData").innerHTML = string;
+  };
+  xhr.send();
 }

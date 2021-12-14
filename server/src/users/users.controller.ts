@@ -20,13 +20,11 @@ export class UsersController {
   constructor(private readonly usersService: UsersService) {}
 
   @Post()
-  @UseGuards(JwtAuthGuard)
   create(@Body() createUserDto: CreateUserDto) {
     return this.usersService.create(createUserDto);
   }
 
   @Get()
-  @UseGuards(JwtAuthGuard)
   findAll() {
     return this.usersService.findAll();
   }

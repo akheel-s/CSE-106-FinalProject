@@ -21,25 +21,25 @@ export class UserdecksController {
   constructor(private readonly userdecksService: UserdecksService) {}
 
   @Post()
-  @UseGuards(JwtAuthGuard)
+  // @UseGuards(JwtAuthGuard)
   create(@Body() createUserdeckDto: CreateUserdeckDto) {
     return this.userdecksService.create(createUserdeckDto);
   }
 
   @Get()
-  @UseGuards(JwtAuthGuard)
+  // @UseGuards(JwtAuthGuard)
   findAll() {
     return this.userdecksService.findAll();
   }
 
   @Get(':id')
-  @UseGuards(JwtAuthGuard)
+  // @UseGuards(JwtAuthGuard)
   findOne(@Param('id') id: string) {
     return this.userdecksService.findOne(+id);
   }
 
   @Patch(':id')
-  @UseGuards(JwtAuthGuard)
+  // @UseGuards(JwtAuthGuard)
   update(
     @Param('id') id: string,
     @Body() updateUserdeckDto: UpdateUserdeckDto,
@@ -48,7 +48,7 @@ export class UserdecksController {
   }
 
   @Delete(':id')
-  @UseGuards(JwtAuthGuard)
+  // @UseGuards(JwtAuthGuard)
   remove(@Param('id') id: string) {
     return this.userdecksService.remove(+id);
   }

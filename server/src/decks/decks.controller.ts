@@ -20,7 +20,7 @@ export class DecksController {
   constructor(private readonly decksService: DecksService) {}
 
   @Post()
-  @UseGuards(JwtAuthGuard)
+  // @UseGuards(JwtAuthGuard)
   create(@Body() createDeckDto: CreateDeckDto) {
     return this.decksService.create(createDeckDto);
   }
@@ -36,13 +36,13 @@ export class DecksController {
   }
 
   @Patch(':id')
-  @UseGuards(JwtAuthGuard)
+  // @UseGuards(JwtAuthGuard)
   update(@Param('id') id: string, @Body() updateDeckDto: UpdateDeckDto) {
     return this.decksService.update(+id, updateDeckDto);
   }
 
   @Delete(':id')
-  @UseGuards(JwtAuthGuard)
+  // @UseGuards(JwtAuthGuard)
   remove(@Param('id') id: string) {
     return this.decksService.remove(+id);
   }

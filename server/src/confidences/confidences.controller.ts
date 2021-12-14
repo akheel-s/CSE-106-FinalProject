@@ -20,25 +20,25 @@ export class ConfidencesController {
   constructor(private readonly confidencesService: ConfidencesService) {}
 
   @Post()
-  @UseGuards(JwtAuthGuard)
+  // @UseGuards(JwtAuthGuard)
   create(@Body() createConfidenceDto: CreateConfidenceDto) {
     return this.confidencesService.create(createConfidenceDto);
   }
 
   @Get()
-  @UseGuards(JwtAuthGuard)
+  // @UseGuards(JwtAuthGuard)
   findAll() {
     return this.confidencesService.findAll();
   }
 
   @Get(':id')
-  @UseGuards(JwtAuthGuard)
+  // @UseGuards(JwtAuthGuard)
   findOne(@Param('id') id: string) {
     return this.confidencesService.findOne(+id);
   }
 
   @Patch(':id')
-  @UseGuards(JwtAuthGuard)
+  // @UseGuards(JwtAuthGuard)
   update(
     @Param('id') id: string,
     @Body() updateConfidenceDto: UpdateConfidenceDto,
@@ -47,7 +47,7 @@ export class ConfidencesController {
   }
 
   @Delete(':id')
-  @UseGuards(JwtAuthGuard)
+  // @UseGuards(JwtAuthGuard)
   remove(@Param('id') id: string) {
     return this.confidencesService.remove(+id);
   }

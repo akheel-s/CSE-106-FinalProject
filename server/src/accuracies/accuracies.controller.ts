@@ -20,25 +20,25 @@ export class AccuraciesController {
   constructor(private readonly accuraciesService: AccuraciesService) {}
 
   @Post()
-  @UseGuards(JwtAuthGuard)
+  // @UseGuards(JwtAuthGuard)
   create(@Body() createAccuracyDto: CreateAccuracyDto) {
     return this.accuraciesService.create(createAccuracyDto);
   }
 
   @Get()
-  @UseGuards(JwtAuthGuard)
+  // @UseGuards(JwtAuthGuard)
   findAll() {
     return this.accuraciesService.findAll();
   }
 
   @Get(':id')
-  @UseGuards(JwtAuthGuard)
+  // @UseGuards(JwtAuthGuard)
   findOne(@Param('id') id: string) {
     return this.accuraciesService.findOne(+id);
   }
 
   @Patch(':id')
-  @UseGuards(JwtAuthGuard)
+  // @UseGuards(JwtAuthGuard)
   update(
     @Param('id') id: string,
     @Body() updateAccuracyDto: UpdateAccuracyDto,
@@ -47,7 +47,7 @@ export class AccuraciesController {
   }
 
   @Delete(':id')
-  @UseGuards(JwtAuthGuard)
+  // @UseGuards(JwtAuthGuard)
   remove(@Param('id') id: string) {
     return this.accuraciesService.remove(+id);
   }

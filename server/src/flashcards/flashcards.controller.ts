@@ -20,7 +20,7 @@ export class FlashcardsController {
   constructor(private readonly flashcardsService: FlashcardsService) {}
 
   @Post()
-  @UseGuards(JwtAuthGuard)
+  // @UseGuards(JwtAuthGuard)
   create(@Body() createFlashcardDto: CreateFlashcardDto) {
     return this.flashcardsService.create(createFlashcardDto);
   }
@@ -36,7 +36,7 @@ export class FlashcardsController {
   }
 
   @Patch(':id')
-  @UseGuards(JwtAuthGuard)
+  // @UseGuards(JwtAuthGuard)
   update(
     @Param('id') id: string,
     @Body() updateFlashcardDto: UpdateFlashcardDto,
@@ -45,7 +45,7 @@ export class FlashcardsController {
   }
 
   @Delete(':id')
-  @UseGuards(JwtAuthGuard)
+  // @UseGuards(JwtAuthGuard)
   remove(@Param('id') id: string) {
     return this.flashcardsService.remove(+id);
   }
