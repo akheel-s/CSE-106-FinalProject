@@ -8,7 +8,7 @@
         <title>Studi</title>
             
         <link rel="stylesheet" href="static/css/styles.css?v=1.0">
-        <script src="static/main.js"></script>
+        <script src="static/js/main.js"></script>
     </head>
 
     <body>
@@ -19,11 +19,48 @@
 
         <div>
             <h3>Decks</h3>
-            <a href="./workspace.html">New Deck</a>
         </div>
 
-        <div>
-            <button class="deck-form">Deck 0</button>
+        <div class="tab">
+            <button class="tablinks" onclick="loadTable(event, 'addCourse')">Create Deck</button>
+        </div>
+
+        <div class="edit-tab">
+
+            <form class="edit-form">
+                <textarea id="key" placeholder="Keyword"></textarea>
+                <textarea id="def" placeholder="Definition"></textarea>
+            </form>
+            
+            <button class="plus" onclick="addRow('NewCard')">+</button>
+            <button class="plus" onclick="delRow('NewCard')">-</button>
+
+        </div>
+
+        <div class="save-form">
+            <textarea id="deck_name" placeholder="Name"></textarea>
+            <button class="tablinks" onclick="newDeck()">Save</button>    
+        </div>
+
+        <div id="addCourse" class="tabcontent">
+            <table id="NewCard" class="full">
+
+                <tr>
+                    <th>Card Number</th>
+                    <th>Keyword</th>
+                    <th>Definition</th>
+                </tr>
+
+                <tr>
+                    <td>0</td>
+                    <td>First Card</td>
+                    <td>This is a testing card</td>
+                    <td></td>
+                </tr>
+
+            </table>
+
+        </div>
         </div>
 
 

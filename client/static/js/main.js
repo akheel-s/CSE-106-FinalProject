@@ -48,13 +48,29 @@ function nextCard(card_ID) {
     let request = new XMLHttpRequest();
     let display = document.getElementById("display-area");
 
-    request.open('GET', "/flashcards/" + card_ID);
+    request.open('GET', "localhost:4000/api/flashcards/" + card_ID);
     request.send();
 
     request.onload = () => display.value += request.responseText;
 }
 
 //FUNCTION FOR WORKSPACE//
+function loadTable(event, showTab){
+    var i, tabcontent, tablinks;
+
+    tabcontent = document.getElementsByClassName("tabcontent");
+    for (i = 0; i < tabcontent.length; i++) {
+        tabcontent[i].style.display = "none";
+    }
+
+    tablinks = document.getElementsByClassName("tablinks");
+    for (i = 0; i < tablinks.length; i++) {
+        tablinks[i].className = tablinks[i].className.replace("active", "");        
+    }
+
+    document.getElementById(showTab).style.display = "block";
+    event.currentTarget.className += " active";
+}
 
 count = 1;
 
@@ -91,11 +107,24 @@ function delRow(tableID) {
     count--;
 }
 
+function showAll() {
+    let request = new XMLHttpRequest();
+    let display = document.getElementById("please-work");
+
+    request.open('GET', "http://localhost:4000/api/flashcards/");
+    request.setRequestHeader("Accept", "application/json");
+    
+    request.send();
+
+    request.onload = () => display.value += request.responseText;
+}
+
 function newDeck() {
     var xhttp = new XMLHttpRequest();
     
-    xhttp.open('POST', "localhost:4000/decks");
-    xhttp.setRequestHeader('Content-Type', 'application/json');
+    xhttp.open('POST', "localhost:4000/api/decks");
+    //xhttp.setRequestHeader('Content-Type', 'application/json');
+    xhttp.setRequestHeader("Accept", "application/json");
 
     let deck_name = document.getElementById("deck_name");
     let msg = "Success";
@@ -104,7 +133,7 @@ function newDeck() {
         msg += this.responseText;
     };
 
-    const body = {"name": deck_name.value};
+    const body = {"deck_id":1,"deck_name": deck_name.value};
     
     xhttp.send(JSON.stringify(body));
 }
@@ -113,7 +142,7 @@ function newDeck() {
 function deleteCard() {
     var deck_id = document.getElementById('key');
 
-    request.open('DELETE', 'localhost:4000/flashcards/' + deck_id.value);
+    request.open('DELETE', 'localhost:4000/api/flashcards/' + deck_id.value);
     request.setRequestHeader('Content-Type', 'application/json');
 
     request.onload = function() {
@@ -124,3 +153,31 @@ function deleteCard() {
 }
 
 //FUNCTION FOR VIEW//
+function generate_deck() {
+    var ref = document.getElementById("genTable")[0];
+
+    var table = document.createElement("table");
+    var tableRef = document.createElement("tref");
+
+    for (var i = 0; i < 2; i++) {
+        var row = document.createElement("tr");
+
+        for (var j = 0; j < 2; i++) {
+            var row = document.createElement("tr");
+
+            for (var j = 0; j < 2; j++) {
+                var cell = document.createElement("td");
+                var text = document.createTextNode(i + "Card Name")
+
+                cell.appendChild(text);
+                row.appendChild(cell);
+            }
+
+            tableRef.appendChild(row);
+        }
+
+        table.appendChild(tableRef);
+        //ref.appendChild(table);
+        table.setAttribute("border", 2);
+    }
+}
